@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 
 from taxi.models import Driver, Car, Manufacturer
 
@@ -13,3 +14,8 @@ def index(request):
     }
 
     return render(request, "taxi/index.html", context=context)
+
+class ManufacturerListView(generic.ListView):
+    model = Manufacturer
+    context_object_name = 'manufacturer_list'
+    paginate_by = 5
